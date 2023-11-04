@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<h3>detail of {{article.title}}</h3>
+<hr>
+<h5>by {{article.author}} ot {{article.date}}</h5>
+<p> {{article.body}}</p>
+<hr>
+<ul>
+    {% for comment in article.comments.all%}
+    <li>
+        <b>{{comment.writer}}</b>| {{comment.comment}}
+    </li>
+    {% endfor %}
+</ul>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Comment">
+</form>
+
+<a href="{% url 'articles:articles' %}">>>list bloge<<</list></a>
+{% endblock %}
+
+
+
+
+
+
+
+
+

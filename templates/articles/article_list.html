@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+articles
+{% endblock %}
+
+{% block content %}
+<h1> Articles </h1>
+<hr>
+ <ul>
+    {% for Article in article %}
+    <li>
+       <a href="{{Article.get_absolute_url}}">{{Article.title}}</a>
+        <br>
+        {% if user.is_authenticated  and Article.author == user %} 
+        <a href="{% url 'articles:update' Article.id %}">update</a> | <a href="{% url 'articles:delete' Article.id %}">Delete</a>
+        {% endif %}
+        <hr>
+    </li>
+    {% endfor %}
+ </ul>
+{% endblock %}
